@@ -1,0 +1,75 @@
+- Como utilizar a api
+
+1 - Rota User
+
+Usar a rota http://localhost:3000/users/register
+Para se registar passar um JSON com as seguintes chaves
+    {
+        "username": string
+        "email": string (Passar @ e .com)
+        "password": string ( Senha vai ser criptografada com o bcrypt)
+    }
+
+Automaticamente seu registro vai ser criado como admin false
+
+Para acessar as proximas rotas é preciso fazer login e ser admin para fazer as alterações
+
+(Para utilizar o token no imnsonia ou outros passar no header)
+
+Authorization       Bearer'TOKEN_RECEBIDO'
+
+http://localhost:3000/users/login <- Login ( passar email e password para validar )
+
+http://localhost:3000/users <- Mostra todos os usuarios no banco
+http://localhost:3000/users/:id <- Mostra apenas um usuário pelo id
+http://localhost:3000/users/update/:id <- atualiza apenas o username
+http://localhost:3000/users/delete/:id <- deleta o usuário 
+
+2 - Rota Quiz
+
+http://localhost:3000/quiz/register <- Registra uma nova pergunta
+
+    {
+        "question": string
+        "options": ["string"]
+    }   "correct_answer": number
+
+http://localhost:3000/quiz <- Mostra todas as perguntas
+http://localhost:3000/quiz/:id <- Mostra apenas uma pergunta pelo id
+http://localhost:3000/quiz/update/:id <- Atualiza a pergunta escolhida via id
+http://localhost:3000/quiz/delete/:id <- deleta pergunta
+
+3 - Rota Ranking
+
+http://localhost:3000/ranking/register < - Registra o ranking
+
+    {
+        "username": string
+        "score": number,
+        "response_time": string
+    }
+
+http://localhost:3000/ranking/update/:id < - Atualiza o ranking
+http://localhost:3000/ranking/delete/:id < - Deleta o ranking
+
+Essas rotas não precisa ser admin para acessar
+
+http://localhost:3000/ranking <- Mostra todo o ranking
+http://localhost:3000/ranking/:id <- Verifica por id
+
+4 - Rota Historic (Apenas admin)
+
+http://localhost:3000/historic/register <- Registra historico
+
+    {
+        "username": string
+        "question": string
+        "option": number
+        "correct_answer": number
+        "response_time": string
+    }
+
+http://localhost:3000/historic <- Mostra todo historico
+http://localhost:3000/historic/:id <- Historico por id
+http://localhost:3000/historic/update/:id <- Atualiza historico
+http://localhost:3000/historic/delete/:id <- Deleta historico
